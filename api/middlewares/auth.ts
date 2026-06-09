@@ -1,15 +1,11 @@
-import { Request, Response, NextFunction } from 'express';
+import type { Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
 import jwt from 'jsonwebtoken';
 import { User, Teacher } from '../models/index.js';
+import type { AuthRequest } from '../types.js';
 
-export interface AuthRequest extends Request {
-  user?: {
-    id: number;
-    username: string;
-    role: 'admin' | 'teacher';
-    teacherId?: number;
-  };
-}
+// Re-export AuthRequest for convenience
+export type { AuthRequest } from '../types.js';
 
 const JWT_SECRET = process.env.JWT_SECRET || 'edulab-secret-key-2024';
 

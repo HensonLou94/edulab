@@ -20,7 +20,8 @@ import signinRoutes from './routes/signins.js';
 import systemRoutes from './routes/system.js';
 
 // Import middlewares
-import { authMiddleware, logMiddleware } from './middlewares/auth.js';
+import { authMiddleware } from './middlewares/auth.js';
+import { logMiddleware } from './middlewares/log.js';
 import { errorHandler, notFoundHandler } from './middlewares/error.js';
 
 // ESM mode

@@ -1,8 +1,10 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
+import type { Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { Op } from 'sequelize';
 import { Teacher, User, Schedule, Signin } from '../models/index.js';
-import { authMiddleware, adminMiddleware, teacherSelfMiddleware, AuthRequest } from '../middlewares/auth.js';
+import { authMiddleware, adminMiddleware, teacherSelfMiddleware } from '../middlewares/auth.js';
+import type { AuthRequest } from '../types.js';
 
 const router = Router();
 

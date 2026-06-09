@@ -1,6 +1,8 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
+import type { Response } from 'express';
 import { Signin, Schedule, Student } from '../models/index.js';
-import { authMiddleware, AuthRequest } from '../middlewares/auth.js';
+import { authMiddleware } from '../middlewares/auth.js';
+import type { AuthRequest } from '../types.js';
 
 const router = Router();
 

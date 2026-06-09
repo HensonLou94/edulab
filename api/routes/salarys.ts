@@ -1,8 +1,10 @@
-import { Router, Response } from 'express';
+import { Router } from 'express';
+import type { Response } from 'express';
 import { Op } from 'sequelize';
 import * as XLSX from 'xlsx';
 import { Salary, Teacher, Schedule, User } from '../models/index.js';
-import { authMiddleware, adminMiddleware, AuthRequest } from '../middlewares/auth.js';
+import { authMiddleware, adminMiddleware } from '../middlewares/auth.js';
+import type { AuthRequest } from '../types.js';
 
 const router = Router();
 

@@ -1,6 +1,7 @@
-import { Response, NextFunction } from 'express';
-import { AuthRequest } from './auth.js';
+import type { Response, NextFunction } from 'express';
+import { authMiddleware } from './auth.js';
 import { SystemLog } from '../models/index.js';
+import type { AuthRequest } from '../types.js';
 
 export const logMiddleware = async (req: AuthRequest, res: Response, next: NextFunction) => {
   const originalJson = res.json.bind(res);

@@ -1,7 +1,9 @@
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
+import type { Request, Response } from 'express';
 import bcrypt from 'bcryptjs';
 import { User, Teacher } from '../models/index.js';
-import { generateToken, authMiddleware, AuthRequest } from '../middlewares/auth.js';
+import { generateToken, authMiddleware } from '../middlewares/auth.js';
+import type { AuthRequest } from '../types.js';
 
 const router = Router();
 
