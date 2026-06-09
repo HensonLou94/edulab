@@ -1,0 +1,47 @@
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8088:8088"
+    environment:
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_USER=edulab
+      - DB_PASSWORD=${DB_PASSWORD:-edulab123}
+      - DB_NAME=edulab
+      - JWT_SECRET=${JWT_SECRET:-edulab-secret-key-2024}
+      - JWT_EXPIRES_IN=24h
+      - NODE_ENV=production
+    depends_on:
+      mysql:
+        condition: service_healthy
+    networks:
+      - edulab-network
+    restart: unless-stopped
+
+  mysql:
+    image: mysql:8.0
+    environment:
+      - MYSQL_ROOT_PASSWORD=${DB_PASSWORD:-edulab123}
+      - MYSQL_DATABASE=edulab
+      - MYSQL_USER=edulab
+      - MYSQL_PASSWORD=${DB_PASSWORD:-edulab123}
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - edulab-network
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+networks:
+  edulab-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
